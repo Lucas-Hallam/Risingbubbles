@@ -48,3 +48,34 @@ void draw() {
     noStroke();
   }
 }
+class Bubble {
+  
+  float  myX, myY, bubbleSize,bubbleSpeed;
+  color bubbleColor;
+  boolean popped;
+  Bubble() {
+    myX = (float)(500*Math.random());
+    myY = 750;
+    bubbleSize = 25+(float)(80*Math.random());
+    bubbleSpeed = (bubbleSize)/40;
+    bubbleColor = color((float)(255*Math.random()), (float)(255*Math.random()), (float)(255*Math.random()), (float)(250-2*bubbleSize));
+  }
+  void move() {
+    myY = myY - bubbleSpeed;
+    myX = myX + (float)(9*Math.random()-4);
+  }
+  void pop() {
+    popped = true;
+    bubbleSize = 0;
+  }
+  void show() {
+    fill(bubbleColor);
+    ellipse(myX, myY, bubbleSize, bubbleSize);
+  }
+  boolean checkCollision(Bubble Bubble1) { 
+    if (dist(myX, myY, Bubble1.myX, Bubble1.myY) <= (bubbleSize+Bubble1.bubbleSize)/2) {
+      return true;
+    }
+    return false;
+  }
+}

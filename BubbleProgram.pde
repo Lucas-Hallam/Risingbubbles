@@ -1,5 +1,5 @@
-ArrayList <Bubble> FullBubbleList = new ArrayList <Bubble>();
-ArrayList <Bubble> BubbleList = new ArrayList <Bubble>();
+ArrayList <Bubble> fullBubbleList = new ArrayList <Bubble>();
+ArrayList <Bubble> bubbleList = new ArrayList <Bubble>();
 int bNum = 0;
 int index = 30;
 void setup() {
@@ -9,39 +9,39 @@ void setup() {
 }
 void draw() {
   if (index == 30) {
-    Bubble BubbleNew = new Bubble();
-    FullBubbleList.add(BubbleNew);
+    Bubble bubbleNew = new Bubble();
+    fullBubbleList.add(bubbleNew);
     index = 0;
   }
   boolean removed;
   index++;
   background(255);
-  for (int j = 0; j < FullBubbleList.size(); j++) {
-    BubbleList.add(FullBubbleList.get(j));
+  for (int j = 0; j < fullBubbleList.size(); j++) {
+    bubbleList.add(fullBubbleList.get(j));
   }  
-  for (int i = 0; i < FullBubbleList.size(); i++) {
+  for (int i = 0; i < fullBubbleList.size(); i++) {
     removed = false;
-    FullBubbleList.get(i).move();
-    if (FullBubbleList.get(i).bubbleSize + FullBubbleList.get(i).myY <= 0) {
-      FullBubbleList.remove(i);
+    fullBubbleList.get(i).move();
+    if (fullBubbleList.get(i).bubbleSize + fullBubbleList.get(i).myY <= 0) {
+      fullBubbleList.remove(i);
       removed = true;
       i--;
     }
-    BubbleList.remove(0);
+    bubbleList.remove(0);
     if (removed == false) {
-      for (int j = 0; j < BubbleList.size(); j++) {
-        if (FullBubbleList.get(i).checkCollision(BubbleList.get(j)) == true) {
-          FullBubbleList.get(i).pop();
-          FullBubbleList.get(i+j+1).pop();
+      for (int j = 0; j < bubbleList.size(); j++) {
+        if (fullBubbleList.get(i).checkCollision(bubbleList.get(j)) == true) {
+          fullBubbleList.get(i).pop();
+          fullBubbleList.get(i+j+1).pop();
         }
       }
-      FullBubbleList.get(i).show();
-      if (FullBubbleList.get(i).popped == true) {
-        FullBubbleList.remove(i);
+      fullBubbleList.get(i).show();
+      if (fullBubbleList.get(i).popped == true) {
+        fullBubbleList.remove(i);
         i--;
       }
     }
-    bNum = FullBubbleList.size();
+    bNum = fullBubbleList.size();
     stroke(8);
     fill(0);
     text("Number of Bubbles: " + bNum, 50, 50);
